@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 const Gpio = require('onoff').Gpio;
-const led = new Gpio(5, 'out');   
+const led = new Gpio(3, 'out');   
 
 
 app.get('/tueroeffnen', function (req, res) {
