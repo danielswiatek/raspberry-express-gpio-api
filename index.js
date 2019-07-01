@@ -2,14 +2,16 @@ var express = require('express');
 var app = express();
 
 const Gpio = require('onoff').Gpio;
-const led = new Gpio(3, 'out');   
+const led = new Gpio(3, 'out');
+led.write(1);
 
 
 app.get('/tueroeffnen', function (req, res) {
       // Export GPIO17 as an output
-    let stopBlinking = false;
-    led.write(1);
-    setTimeout(led.write(0), 200)
+    led.write(0);
+    setTimeout(() => {
+      led.write(1);
+    }, 3000)
     
 
     // Toggle the state of the LED connected to G PIO17 every 200ms
@@ -26,7 +28,7 @@ app.get('/tueroeffnen', function (req, res) {
 
     // Stop blinking the LED after 5 seconds
     setTimeout(_ => stopBlinking = true, 5000);*/
-    res.status(200).send('Gesetzt');
+    res.status(200).send('Aus');
 });
 
 app.listen(3000, function () {
