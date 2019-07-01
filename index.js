@@ -6,12 +6,8 @@ const Gpio = require('onoff').Gpio;
 
 app.get('/tueroeffnen', function (req, res) {
     const led = new Gpio(5, 'out');       // Export GPIO17 as an output
-    let ledOn = false;
 
-    led.read()
-    .then(value => led.write(value ^ 1))
-    .then(_ => setTimeout(ledOn, 200))
-
+    console.log(led.read());
     
     res.status(200).send('Hello World!');
 });
